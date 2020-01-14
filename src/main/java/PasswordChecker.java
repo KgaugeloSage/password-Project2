@@ -3,6 +3,7 @@ import java.util.logging.*;
 public class PasswordChecker {
     private final static Logger LogPWC = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME );
 
+
     private boolean lowerCaseCheck=true,upperCaseCheck=true,chara=true,exist=true,number=true,length=true;
     int counter=6;
     

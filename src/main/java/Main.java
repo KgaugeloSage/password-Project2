@@ -1,32 +1,19 @@
-import java.io.IOException;
-import java.util.logging.*;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 class Main {
-    private final static Logger logCR = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME );
-    private static void setupLogger() {
-        LogManager.getLogManager().reset();
-        logCR.setLevel(Level.ALL);
 
-        ConsoleHandler ch = new ConsoleHandler();
-        ch.setLevel(Level.SEVERE);
-        logCR.addHandler(ch);
+    final static Logger logCR = LogManager.getLogger(Main.class);
 
-        try {
-            FileHandler fh = new FileHandler("myLogger.log", true);
-            fh.setLevel(Level.FINE);
-            logCR.addHandler(fh);
-        } catch (IOException e) {
-            logCR.log(Level.SEVERE, "File logger not working.", e);
-        }
-    }
     public static void main(String[] args) {
-        setupLogger();
-        try {
-            PasswordChecker Test = new PasswordChecker();
-            Test.passwordIsValid("Bello@09");
-        }
-        catch (Exception e) {
-            logCR.log(Level.SEVERE, "This Is an Error message" +e);
+
+        PasswordChecker password = new PasswordChecker();
+        password.passwordIsValid("Bello@09");
+
+        logCR.info("This is an info message");
+        logCR.error("This is an Error Log Message");
+        if(logCR.isDebugEnabled()){
+            logCR.debug("This is a debug Message");
         }
     }
-    }
+}
